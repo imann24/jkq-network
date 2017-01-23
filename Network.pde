@@ -16,6 +16,7 @@ void setup() {
     int dY = int(random(height/2-playArea.dimensions/2 + dimensions/2, height/2 + playArea.dimensions/2 - dimensions/2));
     Characters[i] = new doodle(dX, dY, dimensions);
   }
+  int i =0;
   while (!allMaxConnections()) {
     connections con = controller.relate(Characters);
     if (con == null) {break;}

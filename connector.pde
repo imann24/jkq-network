@@ -1,13 +1,15 @@
 class connector {
-  doodle[] Connecteds = new doodle[2];
   
   connector() {
   }
   
   connections relate(doodle[] Characters) { // Variable named the same for convenience ONLY
+    doodle[] Connecteds = new doodle[2];
     for (int i = 0; i < Characters.length ; i++) {
       if (Connecteds[0] == null) {
         if (Characters[i].numConnections < Characters[i].maxConnections) { //Check connections limi
+          Connecteds[0] = Characters[i];
+          Characters[i].numConnections++;
         }
       } else if (Connecteds[1] == null) {
         if (Characters[i].numConnections < Characters[i].maxConnections) {
@@ -16,6 +18,8 @@ class connector {
               Characters[i].numConnections++;
           }
         }
+      } else {
+       break; 
       }
     }
     if (Connecteds[1] == null) { //Prevent loners
