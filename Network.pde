@@ -19,6 +19,7 @@ void setup() {
     arrayNum = i;
     Characters[i] = new doodle(dX, dY, dimensions, arrayNum);
   }
+  int i =0;
   while (!allMaxConnections()) {
     connections con = controller.relate(Characters);
     if (con == null) {break;}
