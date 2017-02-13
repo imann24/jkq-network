@@ -24,6 +24,7 @@ void setup() {
     if (con == null) {break;}
     Relationships.add(con);
   }
+  selected = 0;
 }
 
 boolean allMaxConnections() {

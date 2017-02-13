@@ -65,9 +65,7 @@ class doodle {
   }
 
   void drag() {
-    //if (mouseOver()) { //Maybe don't need?
       posX = mouseX-mouseOffX;
       posY = mouseY-mouseOffY;
-    //}
   }
 }
