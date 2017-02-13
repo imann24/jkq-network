@@ -13,9 +13,9 @@ void setup() {
   controller = new connector();
   int arrayNum;
   for (int i = 0; i < Characters.length; i++) {
-    int dimensions = int(random(20, 30));
-    int dX = int(random(width/2 - playArea.dimensions/2 + dimensions/2, width/2 + playArea.dimensions/2 - dimensions/2));
-    int dY = int(random(height/2-playArea.dimensions/2 + dimensions/2, height/2 + playArea.dimensions/2 - dimensions/2));
+    float dimensions = random(20, 30);
+    float dX = random(dimensions/2, playArea.dimensions - dimensions/2);
+    float dY = random(height/2-playArea.dimensions/2 + dimensions/2, height/2 + playArea.dimensions/2 - dimensions/2);
     arrayNum = i;
     Characters[i] = new doodle(dX, dY, dimensions, arrayNum);
   }
@@ -54,9 +54,17 @@ int selector() {
   return -1;
 }
 
-void mouseClicked() { //Need click variable for selection?
+void mousePressed() {
   if (selector() != -1) {
     firstClickHappened = true;
     selected = selector();
+    Characters[selected].mouseOffX = mouseX - Characters[selected].posX;
+    Characters[selected].mouseOffY = mouseY - Characters[selected].posY;
+  }
+}
+
+void mouseDragged() {
+  if (selector() != -1) {
+    Characters[selected].drag(); //ISSUE: Stops moving when mouse leaves dimensions
   }
 }
