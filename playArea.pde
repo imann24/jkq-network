@@ -8,7 +8,7 @@ class playArea {
     fill(155);
     noStroke();
     rectMode(CENTER);
-    rect(dimensions/2, height/2, dimensions, dimensions);
+    rect(dimensions/2, height/2, dimensions, height);
     fill(255);
     stroke(0);
   }

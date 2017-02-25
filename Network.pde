@@ -19,6 +19,8 @@ void setup() {
     float dY = random(height/2-playArea.dimensions/2 + dimensions/2, height/2 + playArea.dimensions/2 - dimensions/2);
     arrayNum = i;
     Characters[i] = new doodle(dX, dY, dimensions, arrayNum);
+    println(i);
+    println(Characters[i].maxConnections);
   }
   while (!allMaxConnections()) {
     connections con = controller.relate(Characters);
@@ -38,6 +40,10 @@ boolean allMaxConnections() {
 }
 
 void draw() {
+  rectMode(CORNER);
+  fill(204);
+  rect(0, 0, width, height);
+  rectMode(CENTER);
   playArea.display();
   for (int i = 0; i < Characters.length; i++) {
    Characters[i].display();
@@ -45,6 +51,7 @@ void draw() {
   for (int i= 0; i < Relationships.size(); i++) {
     Relationships.get(i).drawLine();
   }
+  println(selected);
 }
 
 int selector() {
@@ -53,7 +60,7 @@ int selector() {
       return i;
     }
   }
-  return -1;
+  return invalidValue;
 }
 
 void mousePressed() {
@@ -62,13 +69,7 @@ void mousePressed() {
     selected = selector();
     Characters[selected].mouseOffX = mouseX - Characters[selected].posX;
     Characters[selected].mouseOffY = mouseY - Characters[selected].posY;
-  } else {
-   selected = invalidValue; 
   }
-}
-
-void mouseReleased() {
-  selected = invalidValue;
 }
 
 boolean hasSelected() {
@@ -78,5 +79,11 @@ boolean hasSelected() {
 void mouseDragged() {
   if (hasSelected()) {
     Characters[selected].drag(); //ISSUE: Stops moving when mouse leaves dimensions
+  }
+}
+
+void keyPressed() {
+  for (int i = 0; i < Relationships.size(); i++) {
+    Relationships.get(i).interact();
   }
 }

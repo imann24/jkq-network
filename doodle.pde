@@ -65,7 +65,9 @@ class doodle {
   }
 
   void drag() {
+    if (mouseX < playArea.dimensions - dimensions/2) {
       posX = mouseX-mouseOffX;
+    } else { posX = playArea.dimensions - dimensions/2; }
       posY = mouseY-mouseOffY;
   }
 }
