@@ -4,6 +4,7 @@ ArrayList<connections> Relationships = new ArrayList<connections>(); //Array of 
 connector controller;
 boolean firstClickHappened = false;
 int selected;
+int invalidValue = -1;
 
 void setup() {
   size(1024, 512);
@@ -61,11 +62,21 @@ void mousePressed() {
     selected = selector();
     Characters[selected].mouseOffX = mouseX - Characters[selected].posX;
     Characters[selected].mouseOffY = mouseY - Characters[selected].posY;
+  } else {
+   selected = invalidValue; 
   }
 }
 
+void mouseReleased() {
+  selected = invalidValue;
+}
+
+boolean hasSelected() {
+  return selected != invalidValue;  
+}
+
 void mouseDragged() {
-  if (selector() != -1) {
+  if (hasSelected()) {
     Characters[selected].drag(); //ISSUE: Stops moving when mouse leaves dimensions
   }
 }
