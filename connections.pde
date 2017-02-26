@@ -21,7 +21,8 @@ class connections {
   void interact() { //Temporary interaction system
     if (Char1.pickedMe() || Char2.pickedMe()) {
         if (key == 'a' || key == 'A') {
-          if (relationship < 4) {
+          // -1 for zero-indexing offset:
+          if (relationship < relatColors.length - 1) {
             relationship++;
           }
         } else if (key == 'f' || key == 'F') {
